@@ -30,7 +30,7 @@ const navigation = [
   { name: '图片工具', path: '/image' },
   { name: '视频工具', path: '/video' },
   { name: '代码工具', path: '/code' },
-  { name: '加密工具', path: '/crypto' }
+  { name: '前往社区', path: 'https://bbs.vip247.icu/t/container-toolboxk' }
 ]
 
 const toggleTheme = () => {
