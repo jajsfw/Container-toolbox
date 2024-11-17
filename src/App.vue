@@ -98,89 +98,94 @@ const toggleShortcutMenu = () => {
 <template>
   <div class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 theme-transition">
     <!-- 顶部导航栏 -->
-    <nav class="nav-blur sticky top-0 z-50 border-b border-gray-200/50 dark:border-gray-700/50">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between h-14">
-          <!-- 左侧Logo和导航 -->
-          <div class="flex items-center">
-            <router-link to="/" class="flex-shrink-0 flex items-center group">
-              <span class="text-2xl font-normal text-blue-500 transition-transform duration-300 group-hover:scale-110">IT</span>
-              <span class="text-xl font-normal text-gray-600 dark:text-gray-200 ml-1 transition-colors duration-300">工具箱</span>
-            </router-link>
-            
-            <!-- 主导航 -->
-            <div class="hidden sm:ml-8 sm:flex sm:space-x-2">
-              <router-link 
-                v-for="nav in navigation" 
-                :key="nav.path"
-                :to="nav.path"
-                class="px-3 py-1 rounded-full text-sm font-medium transition-all duration-300"
-                :class="[
-                  $route.path.includes(nav.path)
-                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-200 scale-105'
-                    : 'text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 hover:scale-105'
-                ]"
-              >
-                {{ nav.name }}
+    <header class="sticky top-0 z-40 w-full nav-blur border-b border-gray-200/50 dark:border-gray-700/50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo 和标题 -->
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <router-link to="/" class="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+                Cereals tools
               </router-link>
             </div>
           </div>
 
-          <!-- 右侧工具栏 -->
+          <!-- 主导航 -->
+          <div class="hidden sm:ml-8 sm:flex sm:items-center sm:space-x-2">
+            <router-link 
+              v-for="nav in navigation" 
+              :key="nav.path"
+              :to="nav.path"
+              class="inline-flex items-center justify-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-300"
+              :class="[
+                $route.path.includes(nav.path)
+                  ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-200 scale-105'
+                  : 'text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 hover:scale-105'
+              ]"
+            >
+              {{ nav.name }}
+            </router-link>
+          </div>
+
+          <!-- 右侧功能按钮 -->
           <div class="flex items-center space-x-2">
             <!-- 搜索按钮 -->
-            <button 
+            <button
               @click="openSearch"
-              class="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ripple"
+              class="p-2 rounded-full text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50"
             >
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            
-            <!-- 快捷键菜单按钮 -->
+
+            <!-- 主题切换按钮 -->
             <button
-              @click="toggleShortcutMenu"
-              class="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ripple"
-            >
-              <div class="relative">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                </svg>
-                <span class="absolute -top-1 -right-1 flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-              </div>
-            </button>
-            
-            <!-- 主题切换 -->
-            <button 
               @click="toggleTheme"
-              class="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ripple"
+              class="p-2 rounded-full text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50"
             >
-              <svg class="h-5 w-5 transition-transform duration-500" 
-                   :class="{ 'rotate-180': isDark }"
-                   fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path v-if="isDark" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              <svg v-if="isDark" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
             </button>
-            
+
+            <!-- 快捷键按钮 -->
+            <button
+              @click="toggleShortcutMenu"
+              class="p-2 rounded-full text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50"
+            >
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+              </svg>
+            </button>
+
             <!-- 设置按钮 -->
-            <button 
+            <button
               @click="openSettings"
-              class="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ripple"
+              class="p-2 rounded-full text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50"
             >
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </button>
+
+            <!-- 移动端菜单按钮 -->
+            <button
+              @click="openMobileMenu"
+              class="sm:hidden p-2 rounded-full text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50"
+            >
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- 主内容区 -->
     <main class="flex-grow max-w-7xl w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -204,7 +209,7 @@ const toggleShortcutMenu = () => {
     <footer class="mt-auto bg-white/50 dark:bg-gray-800/50 border-t border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
       <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
         <div class="text-center text-gray-500 dark:text-gray-400 text-sm">
-          © 2024 IT工具箱. All rights reserved.
+          © 2024 Cereals Tools. All rights reserved.
         </div>
       </div>
     </footer>

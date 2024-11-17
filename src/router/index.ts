@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import type { RouteLocationNormalized, Position } from 'vue-router'
 import Home from '../views/Home.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -27,6 +27,34 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'crop',
         component: () => import('../views/tools/image/Crop.vue')
+      },
+      {
+        path: 'filter',
+        component: () => import('../views/tools/image/Filter.vue')
+      },
+      {
+        path: 'watermark',
+        component: () => import('../views/tools/image/Watermark.vue')
+      },
+      {
+        path: 'resize',
+        component: () => import('../views/tools/image/Resize.vue')
+      },
+      {
+        path: 'merge',
+        component: () => import('../views/tools/image/Merge.vue')
+      },
+      {
+        path: 'puzzle',
+        component: () => import('../views/tools/image/Puzzle.vue')
+      },
+      {
+        path: 'mosaic',
+        component: () => import('../views/tools/image/Mosaic.vue')
+      },
+      {
+        path: 'effects',
+        component: () => import('../views/tools/image/Effects.vue')
       }
     ]
   },
@@ -55,6 +83,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'formatter',
         component: () => import('../views/tools/code/Formatter.vue')
+      },
+      {
+        path: 'regex',
+        component: () => import('../views/tools/code/RegexTester.vue')
       }
     ]
   },
@@ -69,6 +101,34 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'hash',
         component: () => import('../views/tools/crypto/Hash.vue')
+      },
+      {
+        path: 'text',
+        component: () => import('../views/tools/crypto/TextCrypto.vue')
+      },
+      {
+        path: 'base64',
+        component: () => import('../views/tools/crypto/Base64.vue')
+      },
+      {
+        path: 'url',
+        component: () => import('../views/tools/crypto/URLCrypto.vue')
+      },
+      {
+        path: 'jwt',
+        component: () => import('../views/tools/crypto/JWTParser.vue')
+      },
+      {
+        path: 'password',
+        component: () => import('../views/tools/crypto/PasswordGenerator.vue')
+      },
+      {
+        path: 'timestamp',
+        component: () => import('../views/tools/crypto/TimestampConverter.vue')
+      },
+      {
+        path: 'unicode',
+        component: () => import('../views/tools/crypto/UnicodeConverter.vue')
       }
     ]
   },
@@ -88,10 +148,14 @@ const routes: RouteRecordRaw[] = [
   }
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    savedPosition: Position | null
+  ) {
     if (savedPosition) {
       return savedPosition
     }

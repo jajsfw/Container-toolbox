@@ -93,6 +93,16 @@ const tools = [
     icon: CryptoIcon
   },
   {
+    id: 'crypto-text',
+    name: '文本加密',
+    description: '支持多种加密算法，包括 AES、DES、3DES 等',
+    path: '/crypto/text',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['加密', '解密', 'AES'],
+    icon: CryptoIcon
+  },
+  {
     id: 'qrcode',
     name: '二维码工具',
     description: '生成或扫描二维码',
@@ -129,8 +139,148 @@ const tools = [
     path: '/image/crop',
     category: 'image',
     gradientColor: 'bg-gradient-primary',
-    tags: ['裁剪', '旋转', '比例'],
+    tags: ['裁剪', '旋', '比例'],
     icon: ImageIcon
+  },
+  {
+    id: 'image-filter',
+    name: '图片滤镜',
+    description: '添加滤镜效果，支持多种预设和自定义调整',
+    path: '/image/filter',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['滤镜', '预设', '调色'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-watermark',
+    name: '图片水印',
+    description: '添加文字或图片水印，支持自定义位置和透明度',
+    path: '/image/watermark',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['水印', '文字', '图片'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-resize',
+    name: '图片尺寸调整',
+    description: '调整图片尺寸，支持按比例缩放',
+    path: '/image/resize',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['缩放', '尺寸', '比例'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-merge',
+    name: '图片拼接',
+    description: '支持多张图片的横向纵向拼接',
+    path: '/image/merge',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['拼接', '合并', '排序'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-puzzle',
+    name: '图片拼图',
+    description: '支持多种拼图布局，可自定义间距和背景',
+    path: '/image/puzzle',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['拼图', '布局', '排版'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-mosaic',
+    name: '图片马赛克',
+    description: '添加马赛克效果，支持自定义区域和程度',
+    path: '/image/mosaic',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['马赛克', '涂抹', '隐私'],
+    icon: ImageIcon
+  },
+  {
+    id: 'image-effects',
+    name: '图片特效',
+    description: '添加艺术特效，支持多种预设效果',
+    path: '/image/effects',
+    category: 'image',
+    gradientColor: 'bg-gradient-primary',
+    tags: ['特效', '滤镜', '艺术'],
+    icon: ImageIcon
+  },
+  {
+    id: 'crypto-base64',
+    name: 'Base64 编解码',
+    description: '支持文本和文件的 Base64 编码和解码',
+    path: '/crypto/base64',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['Base64', '编码', '解码'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'crypto-url',
+    name: 'URL 编解码',
+    description: '支持 URL 编码和解码，包括中文字符',
+    path: '/crypto/url',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['URL', '编码', '解码'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'crypto-jwt',
+    name: 'JWT 解析',
+    description: '解析和验证 JWT Token，支持查看头部、载荷和签名',
+    path: '/crypto/jwt',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['JWT', '解析', '验证'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'crypto-password',
+    name: '密码生成器',
+    description: '生成安全的随机密码，支持自定义规则',
+    path: '/crypto/password',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['密码', '生成', '安全'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'crypto-timestamp',
+    name: '时间戳转换',
+    description: '在时间戳和日期时间之间转换，支持多种格式',
+    path: '/crypto/timestamp',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['时间戳', '转换', '日期'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'crypto-unicode',
+    name: 'Unicode 编解码',
+    description: '支持 Unicode 转义序列和字符之间的转换',
+    path: '/crypto/unicode',
+    category: 'crypto',
+    gradientColor: 'bg-gradient-warning',
+    tags: ['Unicode', '编码', '解码'],
+    icon: CryptoIcon
+  },
+  {
+    id: 'code-regex',
+    name: '正则测试',
+    description: '测试和验证正则表达式，支持实时匹配',
+    path: '/code/regex',
+    category: 'code',
+    gradientColor: 'bg-gradient-secondary',
+    tags: ['正则', '测试', '匹配'],
+    icon: CodeIcon
   }
 ]
 
@@ -169,7 +319,7 @@ const filteredTools = computed(() => {
   transition-property: transform, opacity, translate;
 }
 
-/* 添加交错动画延迟 */
+/* 添加交错动画延 */
 .grid > * {
   transition-delay: calc(var(--index) * 50ms);
 }
